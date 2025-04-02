@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TravelEase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10b981', // Green color
+                        secondary: '#064e3b',
+                        accent: '#ecfdf5',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Dots animation for the friends feature */
+        .connecting-dots {
+            position: relative;
+        }
+
+        .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) {
+            top: 20%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+
+        .dot:nth-child(2) {
+            top: 45%;
+            left: 60%;
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3) {
+            top: 70%;
+            left: 20%;
+            animation-delay: 0.6s;
+        }
+
+        .dot:nth-child(4) {
+            top: 80%;
+            left: 65%;
+            animation-delay: 0.9s;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+        }
+
+        /* Travel path animation */
+        .travel-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 5s linear forwards infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+<!-- Top Navigation -->
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <!-- Logo and Site Name -->
+            <div class="flex items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <!-- Logo -->
+                    <div class=" rounded-full flex items-center justify-center bg-blue-500 text-white font-bold text-2xl mr-3 overflow-hidden">
+                        <img src="../img/logo.png" alt="TravelEase Logo" class="h-16 w-16 rounded-full object-cover">
+                    </div>
+                    <!-- Site Name -->
+                    <span class="text-gray-800 font-bold text-lg">TravelEase</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex md:items-center md:space-x-4">
+                <a href="index.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                <a href="travelers.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Travelers</a>
+                <a href="./offers.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Offers</a>
+                <a href="./about.html" class="bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                <a href="./Signup.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">Sign up</a>
+                <a href="./login.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 px-3 py-2 rounded-md text-sm font-medium">log in</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobileMenu()">
+                    <span class="sr-only">Open main menu</span>
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state -->
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="index.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+            <a href="./travelers.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Travelers</a>
+            <a href="./offers.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Offers</a>
+            <a href="./about.html" class="bg-green-600 text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+            <a href="Signup.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Sign up</a>
+            <a href="./login.html" class="text-gray-700 hover:bg-green-100 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">log in</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="py-20 bg-accent">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-center justify-between">
+            <div class="lg:w-1/2 mb-10 lg:mb-0 slide-in-left">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Travel Better Together</h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-lg">Discover a new way to travel. We don't just offer deals - we create memories with the people who matter most: your friends.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="./travelers.html">
+                        <button class="bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                            Find Friends
+                        </button>
+                    </a>
+                    <a href="./offers.html">
+                        <button class="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                            Best offers
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="lg:w-1/2 slide-in-right">
+                <div class="relative">
+                    <img src="../img/friends.jpg" alt="Friends Traveling" class="rounded-lg shadow-xl">
+                    <!-- Animated elements overlay -->
+                    <div class="absolute inset-0 connecting-dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Story</h2>
+            <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600">
+                We started TravelEase with a simple idea: travel is better when shared with friends. After experiencing
+                the joy of accidental meetups with friends abroad, we built a platform that makes coordinating travel
+                with friends effortless and fun.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+            <div class="md:w-1/3 text-center p-6 animate-float">
+                <div class="bg-accent rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Establishment</h3>
+                <p class="text-gray-600">Founded with the mission to transform how friends travel together</p>
+            </div>
+
+            <div class="md:w-1/3 text-center p-6 animate-float" style="animation-delay: 0.2s;">
+                <div class="bg-accent rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Features</h3>
+                <p class="text-gray-600">Launched our friend-finding feature to connect travelers worldwide</p>
+            </div>
+
+            <div class="md:w-1/3 text-center p-6 animate-float" style="animation-delay: 0.4s;">
+                <div class="bg-accent rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Goal</h3>
+                <p class="text-gray-600">Helping thousands of friends discover destinations together</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">What Makes Us Different</h2>
+            <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                We're not just another travel deals site. We're creating a social travel experience that brings friends together.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="feature-card bg-white p-8 rounded-lg shadow-md slide-in-left animate-delay-1">
+                <div class="bg-accent inline-flex p-3 rounded-full mb-6">
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Travel with Friends</h3>
+                <p class="text-gray-600 mb-4">
+                    Easily add friends to your travel plans and coordinate your trips together. Share itineraries, split costs, and create memories.
+                </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card bg-white p-8 rounded-lg shadow-md slide-in-left animate-delay-2">
+                <div class="bg-accent inline-flex p-3 rounded-full mb-6">
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Friend Destination Alerts</h3>
+                <p class="text-gray-600 mb-4">
+                    Get notified when friends are traveling to the same destination or nearby locations. Never miss a chance to meet up.
+                </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card bg-white p-8 rounded-lg shadow-md slide-in-left animate-delay-3">
+                <div class="bg-accent inline-flex p-3 rounded-full mb-6">
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Friend Search</h3>
+                <p class="text-gray-600 mb-4">
+                    Find and connect with friends already on our platform. Discover their travel plans and favorite destinations.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">How It Works</h2>
+            <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Connecting with friends while traveling has never been easier. Here's how our platform makes it happen.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 relative">
+                <div class="relative">
+                    <img src="../img/map.jpg" alt="App Interface" class="rounded-lg shadow-xl mx-auto">
+
+                    <!-- SVG Path Animation -->
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="travel-path" d="M100,300 Q150,100 250,200 T400,100" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <circle cx="100" cy="300" r="8" fill="#10b981"/>
+                        <circle cx="250" cy="200" r="8" fill="#10b981"/>
+                        <circle cx="400" cy="100" r="8" fill="#10b981"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="md:w-1/2 md:pl-12">
+                <div class="space-y-10">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl">
+                            1
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Create Your Profile</h3>
+                            <p class="text-gray-600">Sign up and set up your profile with your travel preferences and favorite destinations.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl">
+                            2
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Connect with Friends</h3>
+                            <p class="text-gray-600">Find and add friends to your network using our search feature or social media connections.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl">
+                            3
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Plan and Share Trips</h3>
+                            <p class="text-gray-600">Browse our exclusive travel deals and share your plans with friends to coordinate meet-ups.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl">
+                            4
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Travel Together</h3>
+                            <p class="text-gray-600">Enjoy your journey with friends and create memories that will last a lifetime.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-16 bg-accent">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">What Our Users Say</h2>
+            <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-white p-8 rounded-lg shadow-md feature-card">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
+                        <img src="../img/ahmed.jpg" alt="User Avatar">
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-semibold text-gray-800">Ahmed</h4>
+                        <p class="text-gray-500 text-sm">Travel Enthusiast</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    "Thanks to TravelEase, I reconnected with my college roommate in Algeria! We didn't even know we were going to be there at the same time until the app notified us."
+                </p>
+                <div class="flex text-yellow-400">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" fill="#D3D3D3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="bg-white p-8 rounded-lg shadow-md feature-card">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
+                        <img src="../img/sara.jpg" alt="User Avatar">
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="font-semibold text-gray-800">sara</h4>
+                        <p class="text-gray-500 text-sm">Traveling</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    "I was afraid to travel alone, but I was surprised that a number of my friends were going to travel together. Thanks to TravelEase who helped me find them and join them.en know we were going to be there at the same time until the app notified us."
+                </p>
+                <div class="flex text-yellow-400">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg class="w-5 h-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="half-star" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="50%" stop-color="#FBBF24" />
+                                <stop offset="50%" stop-color="#D3D3D3" />
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#half-star)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    }
+</script>
+</body>
+</html>
